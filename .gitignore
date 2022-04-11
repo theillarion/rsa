@@ -1,0 +1,9 @@
+*
+!*.cpp
+!*.hpp
+!/srcs
+!/includes
+!CMakeLists.txt
+!CMakeCache.txt
+!test/
+!*.txt
