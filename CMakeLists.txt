@@ -7,4 +7,4 @@ SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -lgmpxx -lgmp")
 
 include_directories("includes/")
 
-add_executable(rsa main.cpp includes/algorithms.hpp includes/basic_functions.hpp)
+add_executable(rsa srcs/main.cpp includes/algorithms.hpp includes/basic_functions.hpp)

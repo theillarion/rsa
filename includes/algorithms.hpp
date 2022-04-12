@@ -27,6 +27,9 @@ namespace algorithms
 		return: (NOD, s, d)
 			s and d -	bezout coefficients
 	*/
+
+	template<typename T>
+	inline std::tuple<T, T, T> Rsa(T p, T	q);
 }
 
 template <typename T>
@@ -98,6 +101,26 @@ inline std::tuple<T, T, T> algorithms::EuclideanExtendedAlgorithm(T a, T b)
 		divs.pop();
 	}
 	return (std::make_tuple(b, s, d));
+}
+
+template<typename T>
+inline std::tuple<T, T, T> algorithms::Rsa(T p, T	q)
+{
+	T	n = p * q;
+	T	phi = (p - 1) * (q - 1);
+	T	e = 2;
+	T	d;
+
+	while (e < phi)
+	{
+		if (algorithms::EuclideanAlgorithm<T>(e, phi) == 1)
+			break;
+		++e;
+	}
+	std::tie(std::ignore, std::ignore, d) = algorithms::EuclideanExtendedAlgorithm<T>(phi, e);
+	if (d < 0)
+		d = basic_functions::Mod(d, phi);
+	return (std::make_tuple(e, d, n));
 }
 
 #endif
