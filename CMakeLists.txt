@@ -5,6 +5,14 @@ set(CMAKE_CXX_STANDARD 20)
 SET(CMAKE_CXX_COMPILER clang++)
 SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -lgmpxx -lgmp")
 
-include_directories("includes/")
+include_directories(includes)
+include_directories(includes/algorithms/basic_algorithms)
+include_directories(includes/algorithms/basic_functions)
+include_directories(includes/algorithms/rsa)
 
-add_executable(rsa srcs/main.cpp includes/algorithms.hpp includes/basic_functions.hpp)
+set(SRCS     srcs/file/file.cpp
+            srcs/encrypt.cpp
+            srcs/decrypt.cpp
+            srcs/main.cpp)
+
+add_executable(rsa ${SRCS})
