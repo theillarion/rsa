@@ -1,9 +1,9 @@
-*
-!*.cpp
-!*.hpp
-!/srcs
-!/includes
+cmake*
+CMake*
 !CMakeLists.txt
-!CMakeCache.txt
-!test/
-!*.txt
+*.o
+*.txt
+rsa
+test/
+.idea/
+Makefile
