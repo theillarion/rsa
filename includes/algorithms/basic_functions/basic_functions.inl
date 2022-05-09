@@ -10,31 +10,35 @@ inline T	algorithms::CalcDischarge(T number)
 }
 
 template<typename T>
-inline T	algorithms::Pow(T	basis, T exp)
+inline T	algorithms::Pow(T basis, unsigned int exp)
 {
-	if (exp == 1 || basis == 0)
-		return (basis);
-	else if (exp == 0 || basis == 1)
+	T result = 1;
+
+	if (basis == 0)
+		return (0);
+	else if (basis == 1 || exp == 0)
 		return (1);
-	else
-		return (basis * Pow<T>(basis, exp - 1));
+	while (exp != 0)
+	{
+		result *= basis;
+		--exp;
+	}
+	return (result);
 }
 
 template<typename T>
-inline T algorithms::GetCountBit(T number)
+inline unsigned int algorithms::GetCountBit(T number)
 {
-	T	i;
-	T	count;
+	unsigned int	count;
 
 	count = 0;
-	i = 1;
 	if (number < 0)
 		number = -number;
 	if (number == 0)
 		return (1);
-	while (i <= number)
+	while (number)
 	{
-		i = i << 1;
+		number >>= 1;
 		++count;
 	}
 	return (count);
@@ -49,4 +53,23 @@ inline T algorithms::Mod(T number, T mod)
 		while (number < 0)
 			number += mod;
 	return (number % mod);
+}
+
+template <typename T>
+inline std::tuple<T, T>	algorithms::NumberDecomposition(T	n)
+{
+	T	d = n - 1;
+	T	s = 0;
+
+	if (n < 2)
+		throw std::invalid_argument("argument mast be less than 2");
+	if (n % 2 == 0)
+		throw std::invalid_argument("argument must not be an even number");
+
+	while (d % 2 == 0)
+	{
+		d /= 2;
+		++s;
+	}
+	return std::make_tuple(s, d);
 }

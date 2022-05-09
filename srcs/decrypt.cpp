@@ -11,12 +11,7 @@ std::string	DeEncryptionTextMethodRsa(const std::string&	text, mpz_class private
 	boost::split(numbers, text, boost::is_any_of(L" "));
 	for (const auto& word: numbers)
 	{
-		mpz_class	message;
-		mpz_class	encrypt_message;
-
-		message = std::stoul(word);
-		encrypt_message = algorithms::FastPowMod<mpz_class>(message, private_exponent, module);
-		result += static_cast<char>(encrypt_message.get_ui());
+		result += static_cast<char>(algorithms::FastPowMod<mpz_class>(mpz_class(word), private_exponent, module).get_ui());
 	}
 	return (result);
 }

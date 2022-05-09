@@ -6,21 +6,12 @@
 std::string	EncryptionTextMethodRsa(const std::string&	text, mpz_class public_exponent, mpz_class module)
 {
 	std::string	result;
-	bool		is_first;
 
-	is_first = true;
-	for (const auto& symbol: text)
+	for (auto it = text.begin(); it != text.end(); ++it)
 	{
-		mpz_class	message;
-		mpz_class	encrypt_message;
-
-		//mpz_class((unsigned int)symbol);
-		message = (unsigned long)symbol;
-		encrypt_message = algorithms::FastPowMod<mpz_class>(message, public_exponent, module);
-		if (!is_first)
+		result += algorithms::FastPowMod<mpz_class>(mpz_class((unsigned int)*it), public_exponent, module).get_str();
+		if (it != text.end() - 1)
 			result += ' ';
-		result += encrypt_message.get_str();
-		is_first = false;
 	}
 	return (result);
 }

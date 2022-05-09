@@ -9,6 +9,8 @@
 #include <boost/algorithm/string/split.hpp>
 #include <boost/algorithm/string/classification.hpp>
 #include "algorithms/algorithms.hpp"
+#include "random/random.hpp"
+#include "algorithms/check_simple/miller_rabin_test.hpp"
 #include "file/file.hpp"
 #include <string>
 
