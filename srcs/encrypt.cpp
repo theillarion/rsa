@@ -3,7 +3,8 @@
 //
 #include "common.hpp"
 
-std::wstring	EncryptionTextMethodRsa(const std::wstring&	text, mpz_class public_exponent, mpz_class module)
+std::wstring	EncryptionTextMethodRsa(const std::wstring&	text, const mpz_class& public_exponent, const mpz_class&
+module)
 {
 	std::wstring	result;
 	std::string		temp;

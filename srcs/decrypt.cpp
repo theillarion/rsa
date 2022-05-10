@@ -3,7 +3,8 @@
 //
 #include "common.hpp"
 
-std::wstring	DeEncryptionTextMethodRsa(const std::wstring&	text, mpz_class private_exponent, mpz_class module)
+std::wstring	DeEncryptionTextMethodRsa(const std::wstring&	text, const mpz_class& private_exponent, const
+mpz_class& module)
 {
 	std::wstring				result;
 	std::vector<std::string>	numbers;
