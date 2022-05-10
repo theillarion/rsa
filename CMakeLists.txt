@@ -3,7 +3,13 @@ project(rsa)
 
 set(CMAKE_CXX_STANDARD 20)
 SET(CMAKE_CXX_COMPILER clang++)
-SET(CMAKE_CXX_FLAGS  "${CMAKE_CXX_FLAGS} -lgmpxx -lgmp")
+SET(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -lgmpxx -lgmp")
+
+add_compile_options(
+        "-Wall;-Werror;-Wextra"
+        "$<$<CONFIG:DEBUG>:-g>"
+        "$<$<CONFIG:RELEASE>:-O3>"
+)
 
 include_directories(includes)
 include_directories(includes/algorithms/basic_algorithms)
@@ -18,5 +24,7 @@ set(SRCS     srcs/file/file.cpp
             srcs/random/random.cpp
             srcs/algorithms/check_simple/miller_rabin_test.cpp
             srcs/main.cpp)
+
+set(CMAKE_CONFIGURATION_TYPES "Release" CACHE STRING "" FORCE)
 
 add_executable(rsa ${SRCS})
