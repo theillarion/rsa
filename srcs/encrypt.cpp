@@ -3,13 +3,15 @@
 //
 #include "common.hpp"
 
-std::string	EncryptionTextMethodRsa(const std::string&	text, mpz_class public_exponent, mpz_class module)
+std::wstring	EncryptionTextMethodRsa(const std::wstring&	text, mpz_class public_exponent, mpz_class module)
 {
-	std::string	result;
+	std::wstring	result;
+	std::string		temp;
 
 	for (auto it = text.begin(); it != text.end(); ++it)
 	{
-		result += algorithms::FastPowMod<mpz_class>(mpz_class((unsigned int)*it), public_exponent, module).get_str();
+		temp = algorithms::FastPowMod<mpz_class>(mpz_class((unsigned int)*it), public_exponent, module).get_str();
+		result += std::wstring(temp.begin(), temp.end());
 		if (it != text.end() - 1)
 			result += ' ';
 	}

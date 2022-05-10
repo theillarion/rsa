@@ -14,8 +14,8 @@
 #include "file/file.hpp"
 #include <string>
 
-std::string	EncryptionTextMethodRsa(const std::string&	text, mpz_class public_exponent, mpz_class module);
-std::string	DeEncryptionTextMethodRsa(const std::string&	text, mpz_class private_exponent, mpz_class module);
+std::wstring	EncryptionTextMethodRsa(const std::wstring&	text, mpz_class public_exponent, mpz_class module);
+std::wstring	DeEncryptionTextMethodRsa(const std::wstring&	text, mpz_class private_exponent, mpz_class module);
 
 int	main();
 

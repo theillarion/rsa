@@ -3,33 +3,42 @@
 //
 #include "file/file.hpp"
 
-std::string	ReadFullFileBinary(const std::string&	path)
+std::wstring	BinaryReadUtf8File(const std::string& path)
 {
-	std::string		result;
-	std::ifstream	file;
-	size_t			size;
+	std::wifstream		file;
+	std::wstringstream	sbuff;
 
-	file.open(path, std::ios::binary | std::ios::ate);
+	if (!std::filesystem::is_regular_file(path))
+		throw std::invalid_argument("path \"" + path + "\" is't a file");
+
+	file.open(path, std::ios::binary);
 	if (!file.is_open())
-		throw std::invalid_argument("Path " + path + " isn't valid");
+		throw std::ifstream::failure("file \"" + path + "\" is't open");
+	file.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t>));
 
-	size = file.tellg();
-	result.resize(size, '\n');
-	file.seekg(0);
+	sbuff << file.rdbuf();
 
-	if (!file.read(&result[0], size))
-		throw std::ifstream::failure("Error read file " + path);
+	if (!file)
+		throw std::ifstream::failure("only " + std::to_string(file.gcount()) + " byte could be read");
 
-	return (result);
+	file.close();
+
+	return (sbuff.str());
 }
 
-void	WriteFileBinary(const std::string&	path, const std::string&	src)
+void	BinaryWriteUtf8File(const std::string& path, const std::wstring&	buff)
 {
-	std::ofstream file;
+	std::wofstream	file;
+	size_t			size;
 
-	file.open(path, std::ios::trunc);
+	file.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t>));
+	file.open(path, std::ios::binary | std::ios::trunc);
 	if (!file.is_open())
-		throw std::invalid_argument("Path " + path + " isn't valid");
-	if (!file.write(&src[0], src.size()))
-		throw std::ifstream::failure("Error read file " + path);
+		throw std::ifstream::failure("file \"" + path + "\" is't open");
+
+	file.write(&buff[0], buff.size());
+	if (!file)
+		throw std::ifstream::failure("error write");
+
+	file.close();
 }

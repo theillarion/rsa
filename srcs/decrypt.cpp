@@ -3,15 +3,16 @@
 //
 #include "common.hpp"
 
-std::string	DeEncryptionTextMethodRsa(const std::string&	text, mpz_class private_exponent, mpz_class module)
+std::wstring	DeEncryptionTextMethodRsa(const std::wstring&	text, mpz_class private_exponent, mpz_class module)
 {
-	std::string				result;
+	std::wstring				result;
 	std::vector<std::string>	numbers;
 
 	boost::split(numbers, text, boost::is_any_of(L" "));
 	for (const auto& word: numbers)
 	{
-		result += static_cast<char>(algorithms::FastPowMod<mpz_class>(mpz_class(word), private_exponent, module).get_ui());
+		result += static_cast<wchar_t>(algorithms::FastPowMod<mpz_class>(mpz_class(word), private_exponent, module)
+		        .get_ui());
 	}
 	return (result);
 }

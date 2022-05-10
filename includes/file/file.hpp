@@ -7,8 +7,12 @@
 
 #include <string>
 #include <fstream>
+#include <sstream>
+#include <locale>
+#include <codecvt>
+#include <filesystem>
 
-std::string	ReadFullFileBinary(const std::string&	path);
-void		WriteFileBinary(const std::string&	path, const std::string&	src);
+std::wstring	BinaryReadUtf8File(const std::string& path);
+void	BinaryWriteUtf8File(const std::string& path, const std::wstring&	buff);
 
 #endif //RSA_FILE_HPP
