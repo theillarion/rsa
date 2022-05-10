@@ -9,22 +9,25 @@ int main()
 	std::wstring encrypt_text;
 	std::wstring deencrypt_text;
 
-	p = GenerateSimpleNumber(1024);
-	q = GenerateSimpleNumber(1024);
+	try
+	{
+		p = GenerateSimpleNumber(1024);
+		q = GenerateSimpleNumber(1024);
 
-	//std::cout << "P = " << p << std::endl << "Q = " << q << std::endl;
+		auto [e, d, n] = algorithms::Rsa(p, q);
 
-	auto [e, d, n] = algorithms::Rsa(p, q);
+		original_text = BinaryReadUtf8File("test/input.txt");
 
-	//std::cout << "E = " << e << std::endl << "D = " << d << std::endl << "N = " << n << std::endl;
+		encrypt_text = EncryptionTextMethodRsa(original_text, e, n);
+		deencrypt_text = DeEncryptionTextMethodRsa(encrypt_text, d, n);
 
-	original_text = BinaryReadUtf8File("test/input.txt");
-
-	encrypt_text = EncryptionTextMethodRsa(original_text, e, n);
-	deencrypt_text = DeEncryptionTextMethodRsa(encrypt_text, d, n);
-
-	BinaryWriteUtf8File("test/output_encrypt.txt", encrypt_text);
-	BinaryWriteUtf8File("test/output_decrypt.txt", deencrypt_text);
+		BinaryWriteUtf8File("test/output_encrypt.txt", encrypt_text);
+		BinaryWriteUtf8File("test/output_decrypt.txt", deencrypt_text);
+	}
+	catch(const std::exception& exp)
+	{
+		std::cout << "\033[91m" << "Exception: " << "\033[0m" << exp.what() << std::endl;
+	}
 
 	return (0);
 }
