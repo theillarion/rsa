@@ -29,14 +29,13 @@ std::wstring	BinaryReadUtf8File(const std::string& path)
 void	BinaryWriteUtf8File(const std::string& path, const std::wstring&	buff)
 {
 	std::wofstream	file;
-	size_t			size;
 
 	file.imbue(std::locale(std::locale(), new std::codecvt_utf8<wchar_t>));
 	file.open(path, std::ios::binary | std::ios::trunc);
 	if (!file.is_open())
 		throw std::ifstream::failure("file \"" + path + "\" is't open");
 
-	file.write(&buff[0], buff.size());
+	file.write(&buff[0], static_cast<std::streamsize>(buff.size()));
 	if (!file)
 		throw std::ifstream::failure("error write");
 
