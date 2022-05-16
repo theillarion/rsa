@@ -13,12 +13,13 @@
 #include "algorithms/check_simple/miller_rabin_test.hpp"
 #include "file/file.hpp"
 #include <string>
+#include "utilities/utilities.hpp"
 
 std::wstring	EncryptionTextMethodRsa(const std::wstring&	text, const mpz_class& public_exponent, const mpz_class&
 module);
 std::wstring	DeEncryptionTextMethodRsa(const std::wstring&	text, const mpz_class& private_exponent, const
 mpz_class& module);
 
-int	main();
+int main(int argc, char **argv);
 
 #endif //RSA_COMMON_HPP
