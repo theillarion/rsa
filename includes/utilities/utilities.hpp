@@ -9,9 +9,8 @@
 #include "simple_number/simple_number.hpp"
 #include <sstream>
 
-void	thread_calc_big_number(mpz_class&	result, unsigned int bit);
-
-template <typename Type> Type from_string(const std::string	&src, bool &is_failed);
+void							thread_calc_big_number(mpz_class&	result, unsigned int bit);
+template <typename Type> Type	from_string(const std::string	&src, bool &is_failed);
 
 #include "utilities.inl"
 
