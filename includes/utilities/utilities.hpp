@@ -6,7 +6,7 @@
 #define RSA_UTILITIES_HPP
 
 #include "gmpxx.h"
-#include "random/random.hpp"
+#include "simple_number/simple_number.hpp"
 #include <sstream>
 
 void	thread_calc_big_number(mpz_class&	result, unsigned int bit);
