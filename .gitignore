@@ -7,3 +7,5 @@ rsa
 test/
 .idea/
 Makefile
+trash/
+.vscode/
