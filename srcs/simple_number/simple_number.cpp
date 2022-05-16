@@ -1,7 +1,7 @@
 //
-// Created by illarion on 09.05.22.
+// Created by illarion on 16.05.22.
 //
-#include "algorithms/check_simple/miller_rabin_test.hpp"
+#include "simple_number/simple_number.hpp"
 
 bool	TestMillerRabin(const mpz_class& number, unsigned int r)
 {
@@ -32,4 +32,23 @@ bool	TestMillerRabin(const mpz_class& number, unsigned int r)
 			return false;
 	}
 	return (true);
+}
+
+static bool	FirstSimpleTest(const mpz_class&	number)
+{
+	return (number % 3 == 0 || number % 5 == 0
+			|| number % 7 == 0 || number % 11 == 0);
+}
+
+mpz_class 	GenerateBigSimpleNumber(unsigned int	bit)
+{
+
+	mpz_class result = GenerateBigNumberFixed(bit);
+
+	if (result % 2 == 0)
+		++result;
+	while (FirstSimpleTest(result) || !TestMillerRabin(result, bit))
+		result += 2;
+
+	return (result);
 }
