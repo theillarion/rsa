@@ -12,19 +12,12 @@ add_compile_options(
 )
 
 include_directories(includes)
-include_directories(includes/algorithms/basic_algorithms)
-include_directories(includes/algorithms/basic_functions)
-include_directories(includes/algorithms/rsa)
-include_directories(includes/random)
-include_directories(includes/algorithms/check_simple)
-include_directories(includes/utilities/utilities.hpp)
-
 
 set(SRCS     srcs/file/file.cpp
             srcs/encrypt.cpp
             srcs/decrypt.cpp
             srcs/random/random.cpp
-            srcs/algorithms/check_simple/miller_rabin_test.cpp
+            srcs/simple_number/simple_number.cpp
             srcs/utilities/utilities.cpp
             srcs/main.cpp)
 
