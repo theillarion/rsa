@@ -5,9 +5,9 @@
 #ifndef RSA_RANDOM_HPP
 #define RSA_RANDOM_HPP
 
-# include <chrono>
-# include "gmpxx.h"
-# include "algorithms/basic_functions/basic_functions.hpp"
+#include <chrono>
+#include "gmpxx.h"
+#include "algorithms/basic_functions/basic_functions.hpp"
 
 mpz_class	GenerateBigNumber(const mpz_class&	max_number);
 //		return: random number [0, max_number - 1]

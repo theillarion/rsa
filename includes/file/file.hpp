@@ -13,6 +13,6 @@
 #include <filesystem>
 
 std::wstring	BinaryReadUtf8File(const std::string& path);
-void	BinaryWriteUtf8File(const std::string& path, const std::wstring&	buff);
+void			BinaryWriteUtf8File(const std::string& path, const std::wstring&	buff);
 
 #endif //RSA_FILE_HPP

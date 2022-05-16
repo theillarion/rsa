@@ -5,7 +5,7 @@
 #ifndef RSA_BASIC_FUNCTIONS_HPP
 #define RSA_BASIC_FUNCTIONS_HPP
 
-# include <cstddef>
+#include <cstddef>
 
 namespace algorithms
 {
@@ -16,6 +16,6 @@ namespace algorithms
 	template<typename T>	std::tuple<T, T>	NumberDecomposition(T	n);
 }
 
-# include "basic_functions.inl"
+#include "basic_functions.inl"
 
 #endif //RSA_BASIC_FUNCTIONS_HPP
