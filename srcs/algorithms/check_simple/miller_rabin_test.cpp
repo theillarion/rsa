@@ -13,7 +13,7 @@ bool	TestMillerRabin(const mpz_class& number, unsigned int r)
 	for (unsigned int i = 0; i < r; ++i)
 	{
 		is_find = false;
-		a = 1 + GenerateBigNumber(number - 2);
+		a = GenerateBigNumberInterval(2, number - 1);
 		x = algorithms::FastPowMod(a, d, number);
 		if (x == 1 || x == number - 1)
 			continue ;
