@@ -7,7 +7,7 @@ void	thread_calc_big_number(mpz_class&	result, unsigned int bit)
 {
 	try
 	{
-		result = GenerateSimpleNumber(bit);
+		result = GenerateBigSimpleNumber(bit);
 	}
 	catch(const std::exception& exp)
 	{
