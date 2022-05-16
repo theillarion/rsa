@@ -1,10 +1,8 @@
 #include "common.hpp"
-#include <filesystem>
-#include <thread>
 
 int main(int argc, char **argv)
 {
-	unsigned int 			bit;
+	unsigned int 	bit;
 	mpz_class		p;
 	mpz_class		q;
 	mpz_class		e;
