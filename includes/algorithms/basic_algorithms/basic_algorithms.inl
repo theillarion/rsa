@@ -70,3 +70,26 @@ std::tuple<T, T, T> algorithms::EuclideanExtendedAlgorithm(T a, T b)
 	}
 	return (std::make_tuple(b, s, d));
 }
+
+template<typename T>
+std::tuple<T, T, T> algorithms::Rsa(T p, T	q)
+{
+	T	n = p * q;
+	T	phi = (p - 1) * (q - 1);
+	T	e;
+	T	d;
+
+	e = GenerateBigNumberInterval(16);
+	if (e % 2 == 0)
+		++e;
+	while (e < phi)
+	{
+		if (algorithms::EuclideanAlgorithm<T>(e, phi) == 1)
+			break;
+		e += 2;
+	}
+	std::tie(std::ignore, std::ignore, d) = algorithms::EuclideanExtendedAlgorithm<T>(phi, e);
+	if (d < 0)
+		d = algorithms::Mod(d, phi);
+	return (std::make_tuple(e, d, n));
+}
