@@ -3,6 +3,7 @@ CMake*
 !CMakeLists.txt
 *.o
 *.txt
+!files/*
 rsa
 test/
 .idea/
