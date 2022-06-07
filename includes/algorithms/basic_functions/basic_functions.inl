@@ -47,12 +47,14 @@ inline unsigned int algorithms::GetCountBit(T number)
 template<typename T>
 inline T algorithms::Mod(T number, T mod)
 {
-	if (number >= 0)
-		return (number % mod);
+	if (number >= 0 && number <= mod)
+		return (number);
 	else
+	{
 		while (number < 0)
 			number += mod;
-	return (number % mod);
+		return (number % mod);
+	}
 }
 
 template <typename T>
