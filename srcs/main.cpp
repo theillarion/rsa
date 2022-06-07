@@ -28,9 +28,7 @@ int main(int argc, char **argv)
 			return (EXIT_FAILURE);
 		}
 		else
-		{
 			bit = current;
-		}
 		path_to_filename = std::string(argv[2]);
 	}
 	else
