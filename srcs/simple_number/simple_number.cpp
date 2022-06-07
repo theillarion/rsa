@@ -5,9 +5,9 @@
 
 bool	TestMillerRabin(const mpz_class& number, unsigned int r)
 {
-	mpz_class a;
-	mpz_class x;
-	bool is_find;
+	mpz_class	a;
+	mpz_class	x;
+	bool		is_find;
 
 	auto [s, d] = algorithms::NumberDecomposition(number);
 	for (unsigned int i = 0; i < r; ++i)
