@@ -39,10 +39,10 @@ template<typename T>
 std::tuple<T, T, T> algorithms::EuclideanExtendedAlgorithm(T a, T b)
 {
 	std::stack<T>	divs;
-	T s_old	= 0;
-	T mod	= 0;
-	T s 	= 0;
-	T d		= 1;
+	T				s_old	= 0;
+	T				mod		= 0;
+	T				s		= 0;
+	T				d		= 1;
 
 	if (a < 1 || b < 1)
 		throw std::invalid_argument("a or b incorrect");
@@ -65,7 +65,6 @@ std::tuple<T, T, T> algorithms::EuclideanExtendedAlgorithm(T a, T b)
 		s_old = s;
 		s = d;
 		d = s_old - d * divs.top();
-		//std::tie(s, d) = std::make_tuple(d, s - d * divs.top());
 		divs.pop();
 	}
 	return (std::make_tuple(b, s, d));
